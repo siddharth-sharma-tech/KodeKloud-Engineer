@@ -1,0 +1,133 @@
+# Task 01: Custom Apache User Setup
+
+## 1. Problem Statement
+
+The xFusionCorp Industries security team required a dedicated Linux user for an Apache web application running on Application Server 2 in the Stratos Datacenter.
+
+The objective was to create a custom Linux user named `james`, assign a unique User ID (UID) of `1882`, and configure the home directory as `/var/www/james`.
+
+This task demonstrates Linux user administration and the ability to create user accounts with specific UID and home directory requirements.
+
+## 2. Tools & Technologies Used
+
+| Tool / Technology | Purpose |
+|---|---|
+| Linux | Operating system |
+| SSH | Remote server access |
+| Bash / Linux CLI | Execute administrative commands |
+| `useradd` | Create a Linux user |
+| `id`, `getent`, `ls` | Verify user configuration |
+
+**Target Server:** Application Server 2  
+**Hostname:** `stapp02`
+
+## 3. Implementation Steps
+
+### Step 1: Connect to Application Server 2
+
+Access the Stratos Datacenter through the Jump Host and connect to Application Server 2 using its authorized SSH credentials.
+
+```bash
+ssh steve@stapp02
+```
+
+### Step 2: Verify the target server
+
+Check the hostname to ensure that you are working on the correct application server.
+
+```bash
+hostname
+```
+
+Expected output:
+
+```text
+stapp02
+```
+
+### Step 3: Create the custom Apache user
+
+Create the user with the specified UID and home directory.
+
+```bash
+sudo useradd -u 1882 -d /var/www/james -m james
+```
+
+**Command explanation:**
+
+- `useradd`: Creates a new Linux user.
+- `-u 1882`: Assigns UID 1882.
+- `-d /var/www/james`: Sets the home directory.
+- `-m`: Creates the home directory.
+- `james`: Specifies the username.
+
+### Step 4: Verify the user configuration
+
+Check the user ID and group information.
+
+```bash
+id james
+```
+
+Check the user account details.
+
+```bash
+getent passwd james
+```
+
+Verify that the home directory exists.
+
+```bash
+ls -ld /var/www/james
+```
+
+## 4. Commands & Configuration Summary
+
+| Command | Purpose |
+|---|---|
+| `hostname` | Verify target server |
+| `useradd` | Create Linux user |
+| `id` | Check UID and group membership |
+| `getent passwd` | Verify account information |
+| `ls -ld` | Verify home directory |
+
+## 5. Final Result
+
+The required Linux user should have the following configuration:
+
+| Parameter | Required Configuration |
+|---|---|
+| Server | `stapp02` |
+| Username | `james` |
+| UID | `1882` |
+| Home Directory | `/var/www/james` |
+
+**Verification criteria:**
+
+- User `james` exists on Application Server 2.
+- UID is correctly assigned as `1882`.
+- Home directory is `/var/www/james`.
+- Home directory is successfully created.
+
+**Task Status:** Mark as completed only after successful verification.
+
+## 6. Key Learnings
+
+Through this hands-on task, I practised:
+
+1. Connecting to remote Linux servers using SSH.
+2. Understanding Linux user administration.
+3. Creating users with custom UIDs.
+4. Configuring custom home directories.
+5. Using Linux commands to verify user accounts.
+6. Understanding how dedicated user accounts support administrative separation and application security.
+
+## 7. Practical Experience
+
+**Learning Platform:** KodeKloud  
+**Category:** Linux Administration  
+**Topic:** User Management  
+**Difficulty:** Beginner
+
+**Evidence:** Terminal screenshots showing server identification, user creation and successful verification.
+
