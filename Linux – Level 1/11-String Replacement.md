@@ -1,4 +1,4 @@
-# Task 11: String ReplacementString Replacement
+# Task 11: String Replacement
 
 ## 1. Problem Statement
 
